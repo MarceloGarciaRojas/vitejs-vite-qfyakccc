@@ -1,0 +1,514 @@
+/* General Styles */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+#app-container {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 20px; /* Reduced padding a bit */
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 100%;
+  max-width: 900px; /* Slightly wider for scoreboard */
+  min-height: 450px;
+  display: flex;
+  flex-direction: column; /* To stack header and screen-content */
+  align-items: center;
+  /* justify-content: center; Removed to allow header at top */
+}
+
+.screen-content {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1; /* Allows content to take available space */
+}
+
+h1,
+h2,
+h3 {
+  color: #f0f0f0;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+  font-size: 2.5em; /* Slightly reduced */
+  margin-bottom: 25px;
+}
+
+h2 {
+  font-size: 1.8em; /* Slightly reduced */
+}
+
+h3 {
+  font-size: 1.4em; /* Slightly reduced */
+}
+
+button {
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-size: 1.1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin: 10px 5px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+button:hover:not(:disabled) {
+  background-color: #ff4757;
+  transform: translateY(-2px);
+}
+
+button:active:not(:disabled) {
+  transform: translateY(0px);
+}
+
+button:disabled {
+  background-color: #cccccc;
+  color: #666;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+input[type='text'] {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  margin-bottom: 15px;
+  font-size: 1em;
+  width: calc(100% - 26px); /* Account for padding */
+  max-width: 300px;
+  box-sizing: border-box;
+  background-color: #fff;
+  color: #333;
+}
+
+.error-message {
+  color: #ff6b6b;
+  margin-top: 10px;
+  font-weight: bold;
+  min-height: 1.2em; /* Reserve space */
+}
+
+/* Header Scoreboard */
+.header-scoreboard {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 10px 15px;
+  border-radius: 10px 10px 0 0; /* Rounded top corners if app-container has rounded top */
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 10px;
+  box-sizing: border-box;
+}
+
+.player-score-item {
+  padding: 8px 12px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  font-size: 0.95em;
+  color: #f0f0f0;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.player-score-item .player-name {
+  font-weight: 600;
+}
+.player-score-item .player-score {
+  font-weight: bold;
+  color: #feca57; /* Highlight score */
+}
+.player-score-item.active-player-score {
+  background-color: #feca57;
+  color: #333;
+  transform: scale(1.05);
+}
+.player-score-item.active-player-score .player-score {
+  color: #4a148c; /* Darker color for score when active */
+}
+
+/* Player Registration Screen */
+.player-registration-screen .player-inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.player-registration-screen .player-input-group {
+  margin-bottom: 10px;
+  width: 100%;
+  max-width: 350px;
+}
+
+.player-registration-screen label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: #eee;
+}
+
+/* Category Selection Screen */
+.category-selection-screen {
+  width: 100%;
+}
+.category-selection-screen .category-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.category-selection-screen .category-button {
+  background-color: #48dbfb;
+  min-width: 150px;
+}
+.category-selection-screen .category-button:hover:not(:disabled) {
+  background-color: #0abde3;
+}
+
+.category-selection-screen .category-button.disabled-category {
+  background-color: #95a5a6; /* Greyish color */
+  color: #d2d5d6;
+  cursor: not-allowed;
+  opacity: 0.7;
+  box-shadow: none;
+}
+.category-selection-screen .category-button.disabled-category:hover {
+  background-color: #95a5a6; /* No hover effect */
+  transform: none;
+}
+
+/* Question Screen */
+.question-screen {
+  width: 100%;
+  max-width: 700px; /* Max width for question content */
+}
+
+.question-screen .question-header {
+  margin-bottom: 15px; /* Reduced margin */
+  font-size: 1.1em; /* Reduced size */
+  color: #f0f0f0;
+}
+.question-screen .question-header p {
+  margin: 5px 0;
+  font-size: 0.9em;
+}
+
+.question-screen .question-text {
+  font-size: 1.5em; /* Slightly reduced */
+  margin-bottom: 25px;
+  min-height: 50px;
+  color: #fff;
+  line-height: 1.4;
+}
+
+.question-screen .answer-options {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(220px, 1fr)
+  ); /* Adjusted minmax */
+  gap: 12px; /* Reduced gap */
+  width: 100%;
+  margin: 0 auto;
+}
+
+.question-screen .answer-button {
+  background-color: #1dd1a1;
+  padding: 14px; /* Adjusted padding */
+  font-size: 1em;
+  width: 100%;
+  box-sizing: border-box;
+}
+.question-screen .answer-button:hover:not(:disabled) {
+  background-color: #10ac84;
+}
+
+.question-screen .answer-button.correct-answer-highlight {
+  background-color: #5cb85c !important;
+  color: white;
+  border: 2px solid #fff;
+  box-shadow: 0 0 10px #5cb85c;
+}
+
+.question-screen .answer-button.selected-incorrect {
+  background-color: #d9534f !important;
+  color: white;
+  opacity: 0.8; /* Make it slightly less prominent than the correct one */
+}
+
+.question-screen .answer-button:disabled {
+  opacity: 0.6; /* General disabled style */
+  cursor: not-allowed;
+}
+/* Ensure disabled highlight for correct answer is still visible but less interactive */
+.question-screen .answer-button.correct-answer-highlight:disabled {
+  opacity: 1;
+}
+
+.question-screen .feedback-text {
+  margin-top: 20px;
+  font-size: 1.3em;
+  font-weight: bold;
+  min-height: 1.5em; /* Reserve space for feedback */
+}
+
+.question-screen .feedback-text.correct {
+  color: #a0d5a1; /* Lighter green for better contrast */
+  text-shadow: 1px 1px 2px #3e8e41;
+}
+
+.question-screen .feedback-text.incorrect {
+  color: #eaa9a7; /* Lighter red */
+  text-shadow: 1px 1px 2px #a94442;
+}
+
+.question-screen .next-button-container {
+  margin-top: 25px; /* Adjusted margin */
+}
+
+/* Scoreboard Screen (Old one, not used for final scores anymore but kept for reference) */
+.scoreboard-screen table {
+  width: 100%;
+  max-width: 500px;
+  margin: 30px auto;
+  border-collapse: collapse;
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.scoreboard-screen th,
+.scoreboard-screen td {
+  padding: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  text-align: left;
+}
+.scoreboard-screen th {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: #f0f0f0;
+  font-size: 1.2em;
+}
+.scoreboard-screen td {
+  font-size: 1.1em;
+  color: #fff;
+}
+.scoreboard-screen tr:last-child td {
+  border-bottom: none;
+}
+
+/* Winner Screen */
+.winner-screen {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative; /* For fireworks positioning */
+  padding-bottom: 20px; /* Space for play again button */
+}
+
+.winner-screen h1 {
+  font-size: 3em;
+  color: #feca57;
+}
+.winner-screen h2 {
+  font-size: 2.2em;
+  margin-bottom: 10px;
+}
+.winner-screen .winner-name {
+  font-size: 2.5em;
+  font-weight: bold;
+  color: #ff6b6b; /* Contrasting color for name */
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+.winner-screen .winner-score {
+  font-size: 1.8em;
+  color: #eee;
+  margin-bottom: 30px;
+}
+
+.winner-screen .play-again-button {
+  background-color: #feca57;
+  margin-top: 20px; /* Ensure it's below fireworks space */
+}
+.winner-screen .play-again-button:hover:not(:disabled) {
+  background-color: #ff9f43;
+}
+
+#fireworks-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; /* Or a fixed height if preferred */
+  min-height: 300px; /* Ensure some space for fireworks */
+  overflow: hidden;
+  pointer-events: none; /* So it doesn't interfere with buttons */
+  z-index: -1; /* Behind other winner content if necessary, but fine if positioned absolutely */
+}
+
+.firework {
+  position: absolute;
+  width: 5px; /* Initial size of the particle shooting up */
+  height: 5px;
+  border-radius: 50%;
+  opacity: 1;
+  /* Animation: particle flies up, then explodes */
+  animation: firework-fly 0.5s ease-out forwards,
+    firework-explode 0.8s ease-out 0.5s forwards;
+  --firework-scale: 15; /* Default scale, can be overridden by JS */
+}
+
+@keyframes firework-fly {
+  /* Optional: if you want an upward trajectory before explosion */
+  0% {
+    transform: translateY(50px) scale(0.5);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(0px) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes firework-explode {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+    box-shadow: 0 0 5px currentColor, 0 0 10px currentColor;
+  }
+  100% {
+    transform: scale(var(--firework-scale));
+    opacity: 0;
+    box-shadow: 0 0 30px currentColor, 0 0 50px currentColor;
+  }
+}
+
+/* Utility */
+.hidden {
+  display: none !important;
+}
+
+.highlight-player {
+  color: #feca57;
+  font-weight: bold;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  #app-container {
+    padding: 15px;
+  }
+  .header-scoreboard {
+    padding: 8px 10px;
+    margin-bottom: 15px;
+  }
+  .player-score-item {
+    padding: 6px 10px;
+    font-size: 0.9em;
+  }
+  h1 {
+    font-size: 2em;
+  }
+  h2 {
+    font-size: 1.5em;
+  }
+  .winner-screen h1 {
+    font-size: 2.5em;
+  }
+  .winner-screen .winner-name {
+    font-size: 2em;
+  }
+
+  .question-screen .answer-options {
+    grid-template-columns: 1fr; /* Stack answers */
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+  #app-container {
+    padding: 10px;
+    min-height: auto;
+  }
+  .screen-content {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 1.8em;
+  }
+  h2 {
+    font-size: 1.3em;
+  }
+  button {
+    padding: 10px 15px;
+    font-size: 0.95em;
+  }
+  input[type='text'] {
+    padding: 10px;
+    font-size: 0.9em;
+  }
+
+  .header-scoreboard {
+    flex-direction: column;
+    align-items: center;
+  }
+  .player-score-item {
+    width: 80%;
+    text-align: center;
+  }
+
+  .question-screen .question-text {
+    font-size: 1.2em;
+  }
+  .question-screen .answer-button {
+    padding: 12px;
+    font-size: 0.9em;
+  }
+  .question-screen .feedback-text {
+    font-size: 1.1em;
+  }
+
+  .winner-screen h1 {
+    font-size: 2em;
+  }
+  .winner-screen h2 {
+    font-size: 1.6em;
+  }
+  .winner-screen .winner-name {
+    font-size: 1.8em;
+  }
+  .winner-screen .winner-score {
+    font-size: 1.3em;
+  }
+}
